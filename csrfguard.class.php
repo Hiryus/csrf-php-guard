@@ -13,7 +13,7 @@
 Class CsrfGuard {
     
     protected static $cookieName = "CSRF_tokens";
-    protected static $key = null;
+    private static $key = null;
     
     public static function setKey($key) {
         self::$key = $key;
@@ -49,7 +49,7 @@ Class CsrfGuard {
             "time" => time()
         );
         // Sign cookie
-        self::sign($cookie);
+        self::seal($cookie);
         // Save it in browser cookie
         self::saveCookie($cookie);
         // Return the token

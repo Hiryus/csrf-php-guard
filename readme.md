@@ -67,6 +67,16 @@ This cookie is signed using sha256 HMAC (with `hash_hmac()` PHP primitive) to pr
 To verify a token, the library:
 * reads the cookie and checks its signature,
 * ensure that the form name and token correspond to the given values
-* if needed, it also check for token timeout by using a rather simple equation: is cookie.time + timespawn < time() ? :)
+* if needed, it also check for token timeout by using a rather simple equation: is cookie.time + timespawn < time() ?
 
 NB: actually, the cookie may contain several structures (token + form name + time) encoded in JSON to allow several tokens to coexist at the same time.
+
+## Why ?
+
+When I looked for a CSRF protection library (for an internal project), I didn't find any which was both:
+* Robust (I still find it astonishing how many flaws I found just by looking the code of several implementations...),
+* Simple and user friendly.
+
+That's why I decided to code this little helper library on my free time.
+
+However, the project was never finished (business needs diappeared) and I never took the time to add proper tests and packages... *sad story* :(.
